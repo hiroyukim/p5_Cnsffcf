@@ -26,7 +26,6 @@ sub all {
     my $self = shift;
     [ 
         map {
-            my $row = $_;
             my ($ip,@roles) = split(/\s+/,$_ );
             Cnsffcf::Config::ServerList::Schema::All->new(+{
                 ip => $ip,
