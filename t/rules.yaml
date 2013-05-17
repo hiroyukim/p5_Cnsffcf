@@ -1,0 +1,4 @@
+---
+load_balancer:
+- check_command: check_ping!100.0,20%!500.0,60%
+  service_description: PING

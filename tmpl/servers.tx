@@ -1,0 +1,27 @@
+: for $config_server_list.hostgroupname_hosts_list() -> $hostgroupname_hosts {
+    define hostgroup {
+        hostgroup_name <: $hostgroupname_hosts['hostgroupname'] :> 
+        alias <: $hostgroupname_hosts['hostgroupname'] :> servers
+        members <: $hostgroupname_hosts['hosts'] :> 
+    }
+: } 
+
+: for $config_server_list.all() -> $row {
+    define host {
+        use linux-server
+        host_name <: $row.hostname() :> 
+        alias <: $row.groupname() :> 
+        address <: $row.ip() :>
+    }
+:   for $config_rules.data[$row.groupname()] -> $item {
+    define service{
+        use generic-service
+        host_name <: $row.hostname() :>
+        service_description <: $item['service_description'] :> 
+:       if $item['check_command'] {
+        check_command <: $item['check_command'] :> 
+:       }        
+    }
+:       }
+:   }
+: }

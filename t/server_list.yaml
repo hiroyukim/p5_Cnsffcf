@@ -1,0 +1,23 @@
+--- #Dev
+servers:
+  - config: localhost.yaml
+    label: localhost
+    hosts:
+      - xxx.xx.xx.xxx dev-01 dev 
+      - xxx.xx.xx.xxx dev-02 dev 
+      - xxx.xx.xx.xxx dev-03 dev 
+--- #Production
+servers:
+  - config: mongodb.yaml
+    hosts:
+      - xxx.xx.xx.xxx mongodb-01 mongodb 
+  - config: cache.yaml
+    hosts:
+      - xxx.xx.xx.xxx cache-01 cache
+      - xxx.xx.xx.xxx cache-02 cache
+  - config: load_balancer.yaml
+    hosts:
+      - xxx.xx.xx.xxx load_balancer-01 load_balancer
+      - xxx.xx.xx.xxx load_balancer-02 load_balancer
+      - xxx.xx.xx.xxx load_balancer-03 load_balancer
+      - xxx.xx.xx.xxx load_balancer-04 load_balancer
