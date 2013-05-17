@@ -12,4 +12,5 @@ sub render {
     )->render($filename,$args);
 }
 
+__PACKAGE__->meta->make_immutable();
 1;

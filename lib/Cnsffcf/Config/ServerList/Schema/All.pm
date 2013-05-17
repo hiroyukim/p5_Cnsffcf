@@ -26,4 +26,5 @@ sub is_role {
     ( grep { $_ eq $role } @{$self->{roles}} ) ;
 }
 
+__PACKAGE__->meta->make_immutable();
 1;
