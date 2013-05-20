@@ -13,7 +13,8 @@
         alias <: $row.groupname() :> 
         address <: $row.ip() :>
     }
-:   for $config_rules.data[$row.groupname()] -> $item {
+:   for [$row.hostname(),$row.groupname()] -> $config_rule_key {    
+:       for $config_rules.data[$config_rule_key] -> $item {
     define service{
         use generic-service
         host_name <: $row.hostname() :>
@@ -22,6 +23,7 @@
         check_command <: $item['check_command'] :> 
 :       }        
     }
+:       }
 :       }
 :   }
 : }
