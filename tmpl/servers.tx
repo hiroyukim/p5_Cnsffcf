@@ -18,12 +18,10 @@
     define service{
         use generic-service
         host_name <: $row.hostname() :>
-        service_description <: $item['service_description'] :> 
-:       if $item['check_command'] {
-        check_command <: $item['check_command'] :> 
-:       }        
-    }
+:       for $item.keys().sort() -> $item_key {
+        <: $item_key :> <: $item[$item_key] :>
 :       }
+    }
 :       }
 :   }
 : }
