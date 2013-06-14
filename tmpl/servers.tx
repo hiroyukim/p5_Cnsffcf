@@ -14,12 +14,12 @@
         address <: $row.ip() :>
     }
 :   for [$row.hostname(),$row.groupname()] -> $config_rule_key {    
-:       for $config_rules.data[$config_rule_key] -> $item {
+:       for $config_rules.data['host_and_groups'][$config_rule_key] -> $item {
     define service{
         use generic-service
         host_name <: $row.hostname() :>
-:       for $item.keys().sort() -> $item_key {
-        <: $item_key :> <: $item[$item_key] :>
+:       for $config_rules.data['services'][$item].keys().sort() -> $item_key {
+        <: $item_key :> <: $config_rules.data['services'][$item][$item_key] :>
 :       }
     }
 :       }

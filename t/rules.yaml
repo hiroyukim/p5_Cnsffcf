@@ -1,4 +1,10 @@
 ---
-load_balancer:
-- check_command: check_ping!100.0,20%!500.0,60%
-  service_description: PING
+host_and_groups:
+  load_balancer:
+  - PING
+  cache-01:
+  - PING
+services:
+  PING:
+    check_command: check_ping!100.0,20%!500.0,60%
+    service_description: PING
